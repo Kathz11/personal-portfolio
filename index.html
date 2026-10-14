@@ -1,75 +1,114 @@
 <!DOCTYPE html>
+<!-- This line tells the browser: "this is an HTML5 page" -->
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katsumi Mae Ikeda | Web Developer Portfolio</title>
-    <meta name="description" content="Personal portfolio of Katsumi Mae Ikeda, a beginner web developer. See my skills, projects, and how to contact me.">
+  <!-- The <head> holds information ABOUT the page. It is not shown on the screen. -->
 
-       <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">                       <!-- lets the page show all characters properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- makes the page fit phone screens -->
+  <title>Team Portfolio | IT 110 Midterm Project</title>  <!-- the text shown on the browser tab -->
+
+  <!-- Connects this page to your CSS file (the design) -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-    <header>
-        <h1>Katsumi Mae Ikeda</h1>
-        <p>Web Developer in Training</p>
-    </header>
+<body class="portfolio">
+  <!-- The <body> holds everything you SEE on the page. -->
 
+
+  <!-- ========== HEADER: team name, subtitle, and menu ========== -->
+  <header class="site-header">
+    <h1>Team Polyglot</h1>  <!-- h1 = the biggest heading. Put your TEAM NAME here. -->
+    <p class="tagline">IT 110 Midterm Project &mdash; Caraga State University, CCIS</p>
+
+    <!-- <nav> = the menu. Each <a> is a link. -->
     <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <a href="#about">About Us</a>        <!-- jumps to the section with id="about" -->
+      <a href="#project">Our Project</a>   <!-- jumps to the section with id="project" -->
+      <a href="#team">Meet the Team</a>    <!-- jumps to the section with id="team" -->
+      <a href="app.html" class="btn">Open the App</a>  <!-- opens your main app page -->
     </nav>
+  </header>
 
-    <main>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                Hi, my name is Katsumi mae. I am learning web development and enjoy building
-                websites from scratch. Also I am learning to improve my skills so that I can create more
-                project in the future.
-            </p>
-        </section>
+  <!-- <main> = the main content of the page -->
+  <main>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <ul>
-                <li>Photographer</li>
-                <li>Editor</li>
-                <li>Programmer</li>
-                <li>Web Developer</li>
-            </ul>
-        </section>
+    <!-- ========== SECTION 1: Title and introduction to your team ========== -->
+    <section id="about" class="card">
+      <h2>Welcome!</h2>  <!-- h2 = a smaller heading -->
+      <p>
+        <!-- Write a short introduction about your team here. -->
+        We are a team of IT students who love building useful web tools.
+        For this midterm project, we combined HTML, CSS, and JavaScript
+        to create an application that talks to a public API.
+      </p>
+    </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
 
-            <article>
-                <h3>My Personal Portfolio Website</h3>
-                <p>
-                    This website is my first project. I built it to practice writing clean and organized code.
-                </p>
-            </article>
+    <!-- ========== SECTION 2: The project you chose and its goal ========== -->
+    <section id="project" class="card">
+      <h2>Our Project: Language Translator App</h2>
+      <p>
+        <strong>Main goal:</strong> Help users translate words and short
+        sentences between languages quickly, including Filipino and Cebuano.
+      </p>
 
-        </section>
+      <!-- <ul> = a bulleted list. Each <li> is one bullet. -->
+      <ul>
+        <li><strong>API used:</strong> MyMemory Translation API</li>
+        <li><strong>Technologies:</strong> HTML, CSS, JavaScript (fetch + async/await)</li>
+        <li><strong>Extra features:</strong> Swap languages, copy result, listen to translation, translation history, dark mode</li>
+      </ul>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <ul>
-                <li>Email: <a href="mailto:katsumimaeikeda@gmail.com">katsumimaeikeda@gmail.com</a></li>
-                <li>GitHub: <a href="https://github.com/katsumimaeikeda-hue/kat.git">My GitHub Profile</a></li>
-            </ul>
-        </section>
+      <!-- Button that leads to your main app (this is required by the instructions) -->
+      <a href="app.html" class="btn btn-large">Try the Translator App &rarr;</a>
+    </section>
 
-    </main>
 
-    <footer>
-        <p>© 2026 Kath</p>
-    </footer>
+    <!-- ========== SECTION 3: Profile of each team member ========== -->
+    <section id="team">
+      <h2 class="section-title">Meet the Team</h2>
+
+      <div class="team-grid">
+
+        <!-- MEMBER 1: Each <article> is one profile card.
+             Copy and paste a whole <article> block to add a member (max 3). -->
+        <article class="profile card">
+          <!-- src = where the photo is saved. alt = text shown if the photo does not load. -->
+          <img src="assets/member1.jpg" alt="Photo of Member One" class="avatar">
+          <h3>Member One</h3>                                    <!-- 1. NAME -->
+          <p class="role">HTML Structure &amp; Project Management</p>  <!-- 3. ROLE -->
+          <p>Short bio: Write one or two sentences about yourself and what you contributed.</p>
+        </article>
+
+        <!-- MEMBER 2 -->
+        <article class="profile card">
+          <img src="assets/member2.jpg" alt="Photo of Member Two" class="avatar">
+          <h3>Member Two</h3>
+          <p class="role">CSS Styling &amp; Layout</p>
+          <p>Short bio: Write one or two sentences about yourself and what you contributed.</p>
+        </article>
+
+        <!-- MEMBER 3 (delete this block if you only have 2 members) -->
+        <article class="profile card">
+          <img src="assets/member3.jpg" alt="Photo of Member Three" class="avatar">
+          <h3>Member Three</h3>
+          <p class="role">JavaScript Logic &amp; API Integration</p>
+          <p>Short bio: Write one or two sentences about yourself and what you contributed.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========== FOOTER: the bottom of the page ========== -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Team Polyglot &bull; IT 110 &bull; Caraga State University</p>
+  </footer>
 
 </body>
 </html>

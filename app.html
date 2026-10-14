@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- This line tells the browser: "this is an HTML5 page" -->
+<html lang="en">
+
+<head>
+  <!-- The <head> holds information ABOUT the page. It is not shown on the screen. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Translator | Team Polyglot</title>
+
+  <!-- Connects this page to your CSS file (the design) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="app-page">
+  <!-- The <body> holds everything you SEE on the page.
+
+       IMPORTANT: The id="..." names below (like id="text-input") are used by
+       script.js to find each element. If you rename an id here, you must
+       rename it in script.js too, or the app will stop working. -->
+
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <h1>Language Translator</h1>
+    <nav>
+      <a href="index.html">&larr; Back to Portfolio</a>   <!-- goes back to your portfolio page -->
+      <button id="theme-toggle" class="btn btn-small" type="button">Dark Mode</button>
+    </nav>
+  </header>
+
+
+  <main class="app-container">
+
+    <!-- ========== PART 1: INPUT (what the user fills in) ========== -->
+    <section class="card">
+
+      <!-- <form> groups the inputs together. Pressing the Translate button submits it. -->
+      <form id="translate-form" autocomplete="off">
+
+        <!-- Language choices -->
+        <div class="lang-row">
+
+          <div class="lang-field">
+            <label for="from-lang">From</label>
+            <!-- <select> = a dropdown menu. script.js fills in the languages. -->
+            <select id="from-lang"></select>
+          </div>
+
+          <!-- Button to swap the two languages -->
+          <button id="swap-btn" class="btn btn-small swap" type="button" title="Swap languages">&#8644;</button>
+
+          <div class="lang-field">
+            <label for="to-lang">To</label>
+            <select id="to-lang"></select>
+          </div>
+
+        </div>
+
+        <!-- Text box where the user types the text to translate.
+             maxlength="500" = the user cannot type more than 500 characters.
+             required = the form will not submit if this is empty. -->
+        <label for="text-input">Text to translate</label>
+        <textarea id="text-input" rows="4" maxlength="500" placeholder="Type a word or short sentence..." required></textarea>
+
+        <!-- Shows how many characters were typed -->
+        <p class="counter"><span id="char-count">0</span> / 500</p>
+
+        <!-- The main button. type="submit" sends the form. -->
+        <button type="submit" class="btn btn-block">Translate</button>
+
+      </form>
+    </section>
+
+
+    <!-- ========== PART 2: STATUS MESSAGE ==========
+         Empty at first. script.js writes messages here, like
+         "Translating..." or "Could not fetch data. Please try again." -->
+    <p id="status" class="status"></p>
+
+
+    <!-- ========== PART 3: RESULT (the translation from the API) ==========
+         class="hidden" keeps this box invisible until there is a result. -->
+    <section id="result" class="card hidden">
+      <div class="result-header">
+        <h2 id="result-label">Translation</h2>
+
+        <div class="btn-group">
+          <button id="listen-btn" class="btn btn-small" type="button">Listen</button>
+          <button id="copy-btn" class="btn btn-small" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- The translated text is placed here by script.js -->
+      <p id="result-text" class="result-text"></p>
+    </section>
+
+
+    <!-- ========== PART 4: HISTORY (extra feature) ========== -->
+    <section id="history-section" class="card hidden">
+      <div class="result-header">
+        <h3>Recent Translations</h3>
+        <button id="clear-history" class="btn btn-small" type="button">Clear</button>
+      </div>
+
+      <!-- <ul> = list. script.js adds the past translations here. -->
+      <ul id="history-list" class="history-list"></ul>
+    </section>
+
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <p>Powered by the MyMemory Translation API &bull; IT 110 Midterm Project</p>
+  </footer>
+
+
+  <!-- Connects your JavaScript file.
+       Keep this at the BOTTOM so the page loads first, then the script runs. -->
+  <script src="script.js"></script>
+
+</body>
+</html>

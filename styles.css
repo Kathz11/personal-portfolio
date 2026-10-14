@@ -1,0 +1,375 @@
+/* =====================================================
+   HOW CSS WORKS (quick guide)
+
+   selector {
+     property: value;
+   }
+
+   - selector = WHAT you want to style (a tag, a .class, or an #id)
+   - property = WHAT you want to change (color, size, spacing...)
+   - value    = HOW you want to change it
+
+   A "." before a name means a class  (example: .card  -> class="card")
+   A "#" before a name means an id    (example: #result -> id="result")
+   ===================================================== */
+
+
+/* =====================================================
+   1. COLORS (CSS variables)
+   Save your colors once here, then reuse them everywhere
+   with var(--name). Change a color here and the whole
+   website changes.
+   ===================================================== */
+:root {
+  --bg: #f4f6fb;          /* page background */
+  --card: #ffffff;        /* card (box) background */
+  --text: #1f2937;        /* main text color */
+  --muted: #6b7280;       /* lighter gray text */
+  --primary: #4f46e5;     /* main color (buttons, header) */
+  --primary-dark: #4338ca;/* darker version, used on hover */
+  --border: #e5e7eb;      /* thin lines around boxes */
+  --error: #dc2626;       /* red for error messages */
+}
+
+/* DARK MODE: when the body has the class "dark",
+   these colors replace the ones above. */
+body.dark {
+  --bg: #111827;
+  --card: #1f2937;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --primary: #818cf8;
+  --primary-dark: #6366f1;
+  --border: #374151;
+}
+
+
+/* =====================================================
+   2. BASE STYLES (apply to the whole page)
+   ===================================================== */
+
+/* The * means "everything". This removes the default spacing
+   browsers add, so we start from a clean slate. */
+* {
+  box-sizing: border-box;  /* padding stays INSIDE the width of a box */
+  margin: 0;               /* margin = space OUTSIDE a box */
+  padding: 0;              /* padding = space INSIDE a box */
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;  /* font choices, first one that works is used */
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;        /* space between lines of text */
+  min-height: 100vh;       /* at least the full height of the screen */
+
+  /* flex lets us push the footer to the bottom of the page */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;                 /* main grows to fill the empty space */
+  width: 100%;
+  max-width: 900px;        /* content never gets wider than 900px */
+  margin: 0 auto;          /* "auto" on the sides = center it */
+  padding: 24px 16px;      /* 24px top/bottom, 16px left/right */
+}
+
+
+/* =====================================================
+   3. HEADER AND FOOTER
+   ===================================================== */
+.site-header {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.tagline {
+  opacity: 0.9;            /* slightly see-through */
+  margin-top: 4px;
+}
+
+/* The menu links in the header */
+.site-header nav {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;         /* move to the next line if there is no space */
+  gap: 12px;               /* space between the links */
+  justify-content: center;
+  align-items: center;
+}
+
+.site-header nav a {
+  color: white;
+  text-decoration: none;   /* removes the underline */
+  font-weight: 600;        /* makes the text bold */
+}
+
+/* :hover = when the mouse is over the element */
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+
+/* =====================================================
+   4. CARDS (the white boxes) AND BUTTONS
+   ===================================================== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;                        /* rounded corners */
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);  /* soft shadow */
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;                 /* hand icon when hovering */
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--primary-dark); /* darker color on hover */
+}
+
+.btn:active {
+  transform: scale(0.97);          /* button shrinks a little when clicked */
+}
+
+.btn:disabled {
+  opacity: 0.6;                    /* looks faded while loading */
+  cursor: not-allowed;
+}
+
+/* Different button sizes */
+.btn-large { margin-top: 12px; padding: 12px 24px; }
+.btn-small { padding: 6px 12px; font-size: 0.85rem; }
+.btn-block { width: 100%; }        /* full-width button */
+
+/* Buttons inside the header are white with colored text */
+.site-header .btn {
+  background: white;
+  color: var(--primary);
+}
+.site-header .btn:hover {
+  background: #e0e7ff;
+}
+
+/* script.js adds or removes this class to show or hide things */
+.hidden {
+  display: none;
+}
+
+
+/* =====================================================
+   5. PORTFOLIO PAGE (index.html)
+   ===================================================== */
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card ul {
+  margin: 10px 0 0 20px;
+}
+
+.section-title {
+  margin: 8px 0 16px;
+  text-align: center;
+}
+
+/* GRID: puts the member cards in neat columns.
+   auto-fit + minmax = as many columns as will fit,
+   each at least 240px wide. */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Round profile photo */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;              /* 50% makes a perfect circle */
+  object-fit: cover;               /* crops the photo so it is not stretched */
+  border: 3px solid var(--primary);
+  margin-bottom: 12px;
+  background: var(--border);
+}
+
+.role {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   6. TRANSLATOR APP (app.html)
+   ===================================================== */
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* The row with the two language dropdowns and the swap button */
+.lang-row {
+  display: flex;
+  align-items: flex-end;           /* line everything up at the bottom */
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.lang-field {
+  flex: 1;                         /* both dropdowns share the space equally */
+}
+
+.swap {
+  font-size: 1.2rem;
+  padding: 8px 14px;
+}
+
+/* The dropdowns and the text box share the same style */
+select,
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-family: inherit;            /* use the same font as the page */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* :focus = when the user clicks inside the box */
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primary);
+}
+
+textarea {
+  resize: vertical;                /* user can only stretch it up and down */
+}
+
+.counter {
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 4px 0 14px;
+}
+
+/* Message under the form ("Translating...", errors, etc.) */
+.status {
+  text-align: center;
+  min-height: 1.5em;               /* keeps the space even when empty */
+  margin-bottom: 16px;
+  color: var(--muted);
+}
+
+/* script.js adds the "error" class when something goes wrong */
+.status.error {
+  color: var(--error);
+  font-weight: 600;
+}
+
+/* Result box */
+.result-header {
+  display: flex;
+  justify-content: space-between;  /* title on the left, buttons on the right */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.result-text {
+  font-size: 1.3rem;
+  word-break: break-word;          /* long words wrap instead of overflowing */
+}
+
+/* History list */
+.history-list {
+  list-style: none;                /* removes the bullet points */
+  margin: 10px 0 0 0;
+}
+
+.history-list li {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: var(--bg);
+}
+
+.history-list li:hover {
+  border-color: var(--primary);
+}
+
+.history-list .pair {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+
+/* =====================================================
+   7. RESPONSIVE DESIGN (for phones)
+   Everything inside @media only applies when the screen
+   is 600px wide or smaller. This is how your website
+   "fits" phones, which the rubric asks for.
+   ===================================================== */
+@media (max-width: 600px) {
+
+  /* Stack the language dropdowns on top of each other */
+  .lang-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lang-field {
+    width: 100%;
+  }
+
+  .swap {
+    align-self: center;
+    transform: rotate(90deg);      /* turn the arrows to point up/down */
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header h1 {
+    font-size: 1.5rem;
+  }
+}
